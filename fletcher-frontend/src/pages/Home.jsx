@@ -26,18 +26,21 @@ function Home() {
     setIsUploading(true);
 
     const formData = new FormData();
-    formData.append("audio", audioFile);
+    formData.append("file", audioFile);
 
     try {
-      const res = await fetch("http://localhost:5000/upload", {
+      const res = await fetch("http://localhost:8000/upload", {
         method: "POST",
         body: formData,
       });
 
       if (res.ok) {
-        if (res.file) {
-          setCleanAudioFile(res.file);
-          setCleanAudioUrl(URL.createObjectURL(res.file)); // Create a temporary URL for playback
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+
+        if (url) {
+          setCleanAudioFile(blob);
+          setCleanAudioUrl(url); // Create a temporary URL for playback
           alert("File uploaded successfully!");
         } else {
           alert("Didn't recieve clean file from the model...");
