@@ -1,3 +1,8 @@
 fastapi
 python-multipart
 uvicorn
+scipy
+tensorflow
+librosa
+numpy
+more_itertools
