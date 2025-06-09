@@ -1,0 +1,9 @@
+fastapi
+python-multipart
+uvicorn
+scipy
+librosa
+tensorflow-cpu
+numpy
+more_itertools
+fastapi[standard]
